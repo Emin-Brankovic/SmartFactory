@@ -131,12 +131,12 @@ const Room = () => {
         },
         body: JSON.stringify({
           deviceId: selectedSensor.id,
-          normalLowThreshold: thresholds.normalLowThreshold ? parseFloat(thresholds.normalLowThreshold) : 0.0,
-          normalHighThreshold: thresholds.normalHighThreshold ? parseFloat(thresholds.normalHighThreshold) : 0.0,
-          warningLowThreshold: thresholds.warningLowThreshold ? parseFloat(thresholds.warningLowThreshold) : 0.0,
-          warningHighThreshold: thresholds.warningHighThreshold ? parseFloat(thresholds.warningHighThreshold) : 0.0,
-          criticalLowThreshold: thresholds.criticalLowThreshold ? parseFloat(thresholds.criticalLowThreshold) : 0.0,
-          criticalHighThreshold: thresholds.criticalHighThreshold ? parseFloat(thresholds.criticalHighThreshold) : 0.0,
+          normalLowThreshold: thresholds.normalLower, 
+          normalHighThreshold: thresholds.normalUpper, 
+          warningLowThreshold: thresholds.warningLower,  
+          warningHighThreshold: thresholds.warningUpper, 
+          criticalLowThreshold: thresholds.criticalLower, 
+          criticalHighThreshold: thresholds.criticalUpper
         }),
       });
       if (!response.ok) {

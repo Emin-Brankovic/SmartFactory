@@ -123,7 +123,7 @@ namespace SmartFactoryWebApi.Controllers
         public  ActionResult UpdateThresholdValue([FromBody] UpdateThresholdDto requset)
         {
 
-            string jsonFilePath = "C:\\Users\\Lenovo\\Source\\Repos\\SmartFactory\\SmartFactoryWebApi\\threshold.json";
+            string jsonFilePath = JsonFileHandler.GetJsonFilePath("threshold.json");
             JsonFileHandler jsonHandler = new JsonFileHandler(jsonFilePath);
 
             int errorCode;
@@ -169,7 +169,7 @@ namespace SmartFactoryWebApi.Controllers
 
         private List<JsonTestResponse>? ReadFromJson()
         {
-            string jsonFilePath = "C:\\Users\\Lenovo\\Source\\Repos\\SmartFactory\\SmartFactoryWebApi\\threshold.json"; 
+            string jsonFilePath = JsonFileHandler.GetJsonFilePath("threshold.json");
             JsonFileHandler jsonHandler = new JsonFileHandler(jsonFilePath);
             JObject jsonData;
 

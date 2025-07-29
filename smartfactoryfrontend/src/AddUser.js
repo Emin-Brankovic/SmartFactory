@@ -153,7 +153,7 @@ const AddUser = () => {
                             <option value="User">User</option>
                         </select>
                     </div>
-                    <button type="submit" className="submit-btn">Generate PDF</button>
+                    <button type="submit" className="submit-btn">Add User</button>
                 </form>
 
                 <h2>User List</h2>

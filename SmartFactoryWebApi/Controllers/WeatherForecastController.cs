@@ -40,7 +40,7 @@ namespace SmartFactoryWebApi.Controllers
         [HttpGet("TestJson")]
         public ActionResult<List<JsonTestResponse>> Test()
         {
-            string jsonFilePath = "C:\\Users\\Emin Brankovic\\Desktop\\Coding Battle\\SmartFactory\\SmartFactoryWebApi\\threshold.json";
+            string jsonFilePath = JsonFileHandler.GetJsonFilePath("threshold.json");
             JsonFileHandler jsonHandler = new JsonFileHandler(jsonFilePath);
             JObject jsonData;
 
@@ -60,8 +60,33 @@ namespace SmartFactoryWebApi.Controllers
             List<JsonTestResponse> thresholds = thresholdsArray.ToObject<List<JsonTestResponse>>();
 
             return Ok(thresholds);
-
         }
+
+        //[HttpGet("TestFilePath")]
+        //public ActionResult TestFilePath()
+        //{
+        //    string jsonFilePath = JsonFileHandler.GetJsonFilePath("threshold.json");
+        //    string currentDir = AppDomain.CurrentDomain.BaseDirectory;
+            
+        //    // Find project root
+        //    //string projectRoot = currentDir;
+        //    //while (!string.IsNullOrEmpty(projectRoot) && !File.Exists(Path.Combine(projectRoot, "SmartFactoryWebApi.csproj")))
+        //    //{
+        //    //    projectRoot = Path.GetDirectoryName(projectRoot);
+        //    //}
+            
+        //    //var result = new
+        //    //{
+        //    //    FilePath = jsonFilePath,
+        //    //    FileExists = File.Exists(jsonFilePath),
+        //    //    BaseDirectory = AppDomain.CurrentDomain.BaseDirectory,
+        //    //    CurrentDirectory = Directory.GetCurrentDirectory(),
+        //    //    ProjectRoot = projectRoot,
+        //    //    ProjectRootExists = !string.IsNullOrEmpty(projectRoot),
+        //    //    CsprojExists = !string.IsNullOrEmpty(projectRoot) ? File.Exists(Path.Combine(projectRoot, "SmartFactoryWebApi.csproj")) : false
+        //    //};
+        //    //return Ok(result);
+        //}
 
         //[HttpGet("RenderPDF")]
         //public ActionResult RenderPDF()

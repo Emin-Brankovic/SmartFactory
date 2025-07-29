@@ -19,8 +19,21 @@ namespace SmartFactoryWebApi
 
         public static string GetJsonFilePath(string fileName)
         {
-            string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            return Path.Combine(basePath, fileName);
+            string currentDir = AppDomain.CurrentDomain.BaseDirectory;
+            
+            string projectRoot = currentDir;
+            
+            while (!string.IsNullOrEmpty(projectRoot) && !File.Exists(Path.Combine(projectRoot, "SmartFactoryWebApi.csproj")))
+            {
+                projectRoot = Path.GetDirectoryName(projectRoot);
+            }
+            
+            if (!string.IsNullOrEmpty(projectRoot))
+            {
+                return Path.Combine(projectRoot, fileName);
+            }
+            
+            return Path.Combine(currentDir, fileName);
         }
 
         public JObject ReadJson()
@@ -54,7 +67,7 @@ namespace SmartFactoryWebApi
                 thresholdObject[nameof(request.criticalHighThreshold)] = request.criticalHighThreshold;
                 thresholdObject[nameof(request.WarningLowThreshold)] = request.WarningLowThreshold;
                 thresholdObject[nameof(request.WarningHighThreshold)] = request.WarningHighThreshold;
-                thresholdObject[nameof(request.normalLowThreshold)] = request.normalHighThreshold;
+                thresholdObject[nameof(request.normalLowThreshold)] = request.normalLowThreshold;
                 thresholdObject[nameof(request.normalHighThreshold)] = request.normalHighThreshold;
 
                 File.WriteAllText(_filePath, jsonObj.ToString(Formatting.Indented));
